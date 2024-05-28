@@ -5,8 +5,8 @@ const Customer = require("./CustomerModel.js")
 
 const {DataTypes} = Sequelize;
 
-const Favorite = db.define('favorite', {
-    idFavorite: {
+const Order = db.define('orders', {
+    idOrder: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -15,23 +15,31 @@ const Favorite = db.define('favorite', {
             notEmpty: true
         }
     },
-    idProduct: {
-        type: DataTypes.INTEGER,
+    status: {
+        type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "Pending",
     },
     userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-    }
+    },
+    metodeBayar: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      ongkir: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
 }, {
     freezeTableName: true
 });
 
 
-Favorite.belongsTo(Product, {foreignKey: 'idProduct', onDelete: "CASCADE"})
-Favorite.belongsTo(Customer, {foreignKey: 'userId', onDelete: "CASCADE"})
+Order.belongsTo(Customer, {foreignKey: 'userId', onDelete: "CASCADE"})
 
-module.exports = Favorite;
+module.exports = Order;
 
 (async()=> {
     await db.sync();

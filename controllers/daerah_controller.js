@@ -119,7 +119,7 @@ class DaerahController {
 
   static async ongkir(req, res) {
     try {
-      const id = req.idUser;
+      const id = req.userId;
       const { kurir } = req.params;
 
       const user = await UserModel.findByPk(id).catch((err) => {

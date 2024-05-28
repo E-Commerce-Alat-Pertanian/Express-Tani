@@ -14,7 +14,9 @@ const AuthRoute = require("./routes/AuthRoute.js");
 const ProductRoute = require("./routes/ProductRoute.js");
 const DaerahRoute = require("./routes/daerah_route.js");
 const CategoryRoute = require("./routes/CategoryRouter.js");
-const FavoriteRoue = require("./routes/FavoriteRoute.js")
+const FavoriteRoue = require("./routes/FavoriteRoute.js");
+const OrderRoute = require("./routes/OrderRoute.js");
+const CartRoute = require("./routes/CartRoute.js");
 
 dotenv.config();
 const app = express();
@@ -46,6 +48,8 @@ app.use(UserRoute);
 app.use("/user", CustomerRoute);
 app.use("/kategori", CategoryRoute);
 app.use(AuthRoute);
+app.use("/keranjang", CartRoute);
+app.use("/order", OrderRoute);
 app.use("/favorite", FavoriteRoue)
 app.use("/produk",ProductRoute);
 app.use("/daerah", DaerahRoute);

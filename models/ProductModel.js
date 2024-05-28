@@ -2,11 +2,11 @@ const { Sequelize, DataTypes } = require("sequelize");
 const db = require("../config/Database.js");
 const Users = require("./UserModel.js");
 const Category = require("./CategoryModel.js");
+const Stok = require("./stok_model.js");
 
 const Product = db.define('product', {
     idProduct: {
-        type: DataTypes.STRING,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
         validate: {
@@ -16,15 +16,14 @@ const Product = db.define('product', {
     nama: DataTypes.STRING,
     description: DataTypes.STRING,
     price: DataTypes.DOUBLE,
-    stock: DataTypes.INTEGER,
     image: DataTypes.STRING,
     url: DataTypes.STRING,
     userId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        }
+        allowNull: true,
+        // validate: {
+        //     notEmpty: true
+        // }
     },
     idCategory: {
         type: DataTypes.INTEGER,
@@ -41,6 +40,7 @@ Category.hasMany(Product, { foreignKey: 'idCategory' });
 Product.belongsTo(Category, { foreignKey: 'idCategory' });
 Users.hasMany(Product);
 Product.belongsTo(Users, { foreignKey: 'userId' });
+Stok.belongsTo(Product, { foreignKey: 'idProduct' });
 
 module.exports = Product;
 
