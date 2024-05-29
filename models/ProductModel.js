@@ -40,7 +40,7 @@ Category.hasMany(Product, { foreignKey: 'idCategory' });
 Product.belongsTo(Category, { foreignKey: 'idCategory' });
 Users.hasMany(Product);
 Product.belongsTo(Users, { foreignKey: 'userId' });
-Stok.belongsTo(Product, { foreignKey: 'idProduct' });
+Product.hasMany(Stok, { foreignKey: 'idProduct' });
 
 module.exports = Product;
 
