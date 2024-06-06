@@ -7,6 +7,7 @@ const Stok = require("./stok_model.js");
 const Product = db.define('product', {
     idProduct: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true,
         allowNull: false,
         validate: {
@@ -21,9 +22,6 @@ const Product = db.define('product', {
     userId: {
         type: DataTypes.INTEGER,
         allowNull: true,
-        // validate: {
-        //     notEmpty: true
-        // }
     },
     idCategory: {
         type: DataTypes.INTEGER,
@@ -40,7 +38,7 @@ Category.hasMany(Product, { foreignKey: 'idCategory' });
 Product.belongsTo(Category, { foreignKey: 'idCategory' });
 Users.hasMany(Product);
 Product.belongsTo(Users, { foreignKey: 'userId' });
-Product.hasMany(Stok, { foreignKey: 'idProduct' });
+Product.hasMany(Stok, { foreignKey: 'idProduct', as: 'stok' }); // Use 'stoks' alias
 
 module.exports = Product;
 

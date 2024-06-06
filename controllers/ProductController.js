@@ -1,6 +1,7 @@
 const Product = require("../models/ProductModel.js");
-const Users = require("../models/UserModel.js")
-const Category = require("../models/CategoryModel.js")
+const Users = require("../models/UserModel.js");
+const Category = require("../models/CategoryModel.js");
+const Stok = require("../models/stok_model.js");
 const { Op } = require("sequelize");
 const path = require("path");
 const fs = require("fs");
@@ -35,6 +36,7 @@ const allProduk = (req, res) => {
     Product.findAll({
         include: [
             { model: Category, as: 'category' },
+            { model: Stok, as: 'stok' }
         ]
     })
     .then((data) => {
@@ -54,11 +56,12 @@ const allProduk = (req, res) => {
     });
 };
 
+
 const getProductById = async (req, res) => {
     try {
         let response;
             response = await Product.findOne({
-                attributes: ['idProduct', 'nama', 'description', 'category', 'price', 'stock', 'image', 'url'],
+                attributes: ['idProduct', 'nama', 'description', 'idCategory', 'price', 'image', 'url'],
                 where: {
                     idProduct: req.params.idProduct
                 },
@@ -77,7 +80,7 @@ const createProduct = async (req, res) => {
     if (req.files === null) return res.status(400).json({ msg: "No File Uploaded" })
     const nama = req.body.nama
     const description = req.body.description
-    const category = req.body.category
+    const idCategory = req.body.idCategory
     const price = req.body.price
     const stock = req.body.stock
     const file = req.files.file
@@ -97,7 +100,7 @@ const createProduct = async (req, res) => {
             await Product.create({
                 nama: nama,
                 description: description,
-                category: category,
+                idCategory: idCategory,
                 price: price,
                 stock: stock,
                 image: fileName,

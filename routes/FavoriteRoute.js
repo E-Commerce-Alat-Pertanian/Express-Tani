@@ -10,9 +10,9 @@ const verifyToken = require("../middleware/VerifyToken.js");
 
 const router = express.Router()
 
-router.get('/', getFavorite)
+router.get('/', verifyToken, getFavorite)
 router.get('/:idfavorite', getFavoriteById)
 router.post('/create-favorite', verifyToken, createFavorite)
-router.delete('/:idfavorite', verifyToken, deleteFavorite)
+router.delete('/:idFavorite', verifyToken, deleteFavorite)
 
 module.exports = router;

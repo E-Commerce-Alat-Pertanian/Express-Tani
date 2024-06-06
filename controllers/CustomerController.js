@@ -127,7 +127,7 @@ const Login = async (req, res) => {
     const accessToken = jwt.sign(
       { userId: customer.id, username: customer.username, email: customer.email, noHp: customer.noHp, alamat: customer.alamat },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "1d" }
     );
 
     const refreshToken = jwt.sign(

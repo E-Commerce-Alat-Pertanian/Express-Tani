@@ -26,7 +26,7 @@ const sessionStore = SequelizeStore(session.Store)
 const store = new sessionStore({
     db: db
 })
-app.use(cors({ credentials: true, origin: '*'}));
+app.use(cors({ credentials: true, origin: 'http://localhost:3000'}));
 app.use(session({
     secret: process.env.SESS_SECRET,
     resave: false,

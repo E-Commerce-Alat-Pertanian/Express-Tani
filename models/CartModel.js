@@ -45,7 +45,7 @@ const Cart = db.define('keranjang', {
 
 Cart.belongsTo(Product, {foreignKey: 'idProduct', onDelete: "CASCADE"})
 Cart.belongsTo(Customers, {foreignKey: "userId"})
-Cart.belongsTo(Order,{ foreignKey: "idOrder", onDelete: "CASCADE" })
+// Cart.belongsTo(Order,{ foreignKey: "idOrder", onDelete: "CASCADE" })
 Cart.belongsTo(Stok,  { foreignKey: "idStok", onDelete: "CASCADE" })
 
 module.exports = Cart;
