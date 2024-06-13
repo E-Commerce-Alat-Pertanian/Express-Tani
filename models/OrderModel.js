@@ -36,6 +36,26 @@ const Order = db.define('orders', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  kodeUnik: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  imagePembayaran: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  urlPembayaran: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  imageKurir: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  urlKurir: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 }, {
   freezeTableName: true,
 });

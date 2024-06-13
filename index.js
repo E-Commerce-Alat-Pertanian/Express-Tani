@@ -42,7 +42,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(FileUpload());
 app.use(express.static("public"));
-app.use("/images", express.static("../images/"))
+app.use("/images", express.static("./public/images"))
 
 app.use(UserRoute);
 app.use("/user", CustomerRoute);
